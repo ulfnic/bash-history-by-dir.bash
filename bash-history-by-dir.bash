@@ -59,6 +59,12 @@ bash_history_by_dir__init(){
 	# Declare locals
 	local trap_str
 
+	# Check dependencies
+	if ! type md5sum fzf 1>/dev/null; then
+		printf '%s\n' 'ERROR, bash_history_by_dir__init(): unmet dependencies.' 1>&2
+		return 1
+	fi
+
 	# Clear globals
 	bash_history_by_dir__current=
 	bash_history_by_dir__log_path=
@@ -77,6 +83,3 @@ bash_history_by_dir__init(){
 
 
 [[ $bash_history_by_dir__root ]] && bash_history_by_dir__init
-
-
-
